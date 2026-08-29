@@ -419,7 +419,7 @@
                 title: "With Friends",
                 desc: "Creating lasting bonds and enjoying life's simple pleasures."
             }
-            // To add a video here later, simply add an object like this:
+            // To add a video here later, use this format:
             // {
             //     type: "video",
             //     src: "YOUR_VIDEO_URL.mp4",
@@ -443,7 +443,7 @@
                 if (item.type === 'video') {
                     mediaHTML = `
                         <div class="image-wrapper">
-                            <video src="${item.src}" muted preload="metadata"></video>
+                            <video src="${item.src}#t=0.001" preload="metadata" muted playsinline></video>
                             <div class="video-badge">
                                 <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> VIDEO
                             </div>
