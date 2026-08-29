@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chest & Triceps Pump - Abu Fraz Abbas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0b0f;
+            --card-bg: #14141c;
+            --accent-color: #f39c12;
+            --accent-glow: rgba(243, 156, 18, 0.3);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a5;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 30px 20px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: transparent;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            color: var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            transform: translateX(-4px);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 40px 20px 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        h1 span {
+            color: var(--accent-color);
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Gallery Section - Perfectly Aligned Grid */
+        .gallery-section {
+            max-width: 1300px;
+            margin: 20px auto 100px;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gallery-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+            border-color: rgba(243, 156, 18, 0.3);
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+        }
+
+        .image-wrapper img,
+        .image-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .gallery-card:hover .image-wrapper img,
+        .gallery-card:hover .image-wrapper video {
+            transform: scale(1.08);
+        }
+
+        /* Play icon badge overlay for video items */
+        .video-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(243, 156, 18, 0.4);
+            color: var(--accent-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            backdrop-filter: blur(4px);
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Lightbox Fullscreen Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-content-box {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-media-container {
+            max-width: 100%;
+            max-height: 62vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(243, 156, 18, 0.4);
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.2);
+            background: #000;
+        }
+
+        .lightbox-modal img,
+        .lightbox-modal video {
+            max-width: 100%;
+            max-height: 62vh;
+            object-fit: contain;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-details {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .lightbox-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .lightbox-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .download-btn {
+            background: var(--accent-color);
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .download-btn:hover {
+            background: #ffa500;
+            transform: scale(1.05);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: var(--text-main);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10001;
+        }
+
+        .close-lightbox:hover {
+            color: var(--accent-color);
+        }
+
+        /* Navigation Arrows inside Lightbox */
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(20, 20, 28, 0.8);
+            color: var(--accent-color);
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10000;
+        }
+
+        .lightbox-nav-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .prev-btn {
+            left: -70px;
+        }
+
+        .next-btn {
+            right: -70px;
+        }
+
+        /* Super Fullscreen View for Second Click */
+        body.super-fullscreen-mode .lightbox-content-box {
+            max-width: 100% !important;
+            height: 100%;
+            justify-content: center;
+        }
+
+        body.super-fullscreen-mode .lightbox-media-container {
+            max-height: 92vh !important;
+            max-width: 95vw !important;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        body.super-fullscreen-mode .lightbox-modal img,
+        body.super-fullscreen-mode .lightbox-modal video {
+            max-height: 92vh !important;
+            max-width: 95vw !important;
+        }
+
+        body.super-fullscreen-mode .lightbox-details,
+        body.super-fullscreen-mode .download-btn {
+            display: none !important;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to top, #07070a, var(--card-bg));
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 20px;
+            text-align: center;
+            color: rgba(160, 160, 165, 0.6);
+            font-size: 0.85rem;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 1024px) {
+            .prev-btn { left: 10px; }
+            .next-btn { right: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.1rem; }
+            .image-wrapper { height: 320px; }
+            .close-lightbox { top: 10px; right: 15px; }
+            .lightbox-nav-btn { width: 40px; height: 40px; font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="nav-container">
+            <a href="upper-body.html" class="back-btn">
+                &larr; Back to Upper Body Journey
+            </a>
+        </div>
+    </div>
+
+    <header>
+        <h1>Chest & Triceps <span>Pump</span></h1>
+        <p class="section-desc">
+            Hardcoded Cloudinary archive supporting auto-detected image and video media links.
+        </p>
+    </header>
+
+    <section class="gallery-section">
+        <div class="gallery-grid" id="galleryGrid">
+            </div>
+    </section>
+
+    <div id="lightboxModal" class="lightbox-modal">
+        <button class="close-lightbox" onclick="closeLightbox()">&times;</button>
+        <div class="lightbox-content-box">
+            <button class="lightbox-nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            
+            <div class="lightbox-media-container" id="lightboxMediaBox">
+                </div>
+
+            <button class="lightbox-nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+            
+            <div class="lightbox-details">
+                <h3 id="lightboxTitle" class="lightbox-title"></h3>
+                <div class="lightbox-actions">
+                    <a id="downloadLink" href="" target="_blank" download class="download-btn">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        Download Media
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Abu Fraz Abbas. All Rights Reserved. Chest & Triceps Pump Archive.
+    </footer>
+
+    <script>
+        // BAS APNA CLOUDINARY KA LINK DAALO (IMAGE HO YA VIDEO), CODE KHUD DETECT KAR LEGA!
+        const galleryData = [
+            {
+                src: "https://res.cloudinary.com/gz546ufv/image/upload/v1787985727/IMG_4172_hbibuz.jpg",
+                title: "Incline Dumbbell Press Peak",
+                desc: "Deep stretch and upper chest activation."
+            },
+            {
+                src: "https://res.cloudinary.com/gz546ufv/image/upload/v1787985728/IMG_4173_ygh6re.jpg",
+                title: "Heavy Bench Press Lockout",
+                desc: "Explosive power execution and mid-chest width."
+            },
+            {
+                src: "https://res.cloudinary.com/gz546ufv/image/upload/v1787985731/IMG_4174_pwuegp.png",
+                title: "Cable Crossover Separation",
+                desc: "Squeezing out maximum blood flow and inner chest lines."
+            },
+            {
+                src: "https://res.cloudinary.com/gz546ufv/image/upload/v1787985728/IMG_4175_i4vzmz.jpg",
+                title: "Overhead Tricep Extension",
+                desc: "Isolating the long head for massive arm sweep."
+            },
+            {
+                src: "https://res.cloudinary.com/gz546ufv/image/upload/v1787985728/IMG_4176_xu7elx.jpg",
+                title: "Triceps Rope Pushdown",
+                desc: "Targeting the triceps with a unique rope attachment."
+            }
+        ];
+
+        let currentIndex = 0;
+
+        // Function to automatically check if a URL is a video based on common extensions or Cloudinary paths
+        function isVideoFile(url) {
+            const lowerUrl = url.toLowerCase();
+            return lowerUrl.endsWith('.mp4') || 
+                   lowerUrl.endsWith('.mov') || 
+                   lowerUrl.endsWith('.webm') || 
+                   lowerUrl.endsWith('.ogg') ||
+                   lowerUrl.includes('/video/upload/');
+        }
+
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            galleryData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                card.onclick = () => openLightbox(index);
+
+                const isVideo = isVideoFile(item.src);
+                let mediaHTML = '';
+                let badgeHTML = '';
+
+                if (isVideo) {
+                    mediaHTML = `<video src="${item.src}" muted preload="metadata"></video>`;
+                    badgeHTML = `<div class="video-badge">&#9658;</div>`;
+                } else {
+                    mediaHTML = `<img src="${item.src}" alt="${item.title}">`;
+                }
+
+                card.innerHTML = `
+                    <div class="image-wrapper">
+                        ${mediaHTML}
+                        ${badgeHTML}
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-desc">${item.desc}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.body.classList.remove('super-fullscreen-mode');
+            updateLightboxContent();
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+
+        function closeLightbox() {
+            // Pause any playing video when closing lightbox
+            const videoEl = document.querySelector('#lightboxMediaBox video');
+            if (videoEl) videoEl.pause();
+
+            document.body.classList.remove('super-fullscreen-mode');
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        function toggleSuperFullscreen(e) {
+            e.stopPropagation();
+            document.body.classList.toggle('super-fullscreen-mode');
+        }
+
+        function changeSlide(direction) {
+            // Pause current video before switching slide
+            const videoEl = document.querySelector('#lightboxMediaBox video');
+            if (videoEl) videoEl.pause();
+
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = galleryData.length - 1;
+            } else if (currentIndex >= galleryData.length) {
+                currentIndex = 0;
+            }
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const item = galleryData[currentIndex];
+            document.getElementById('lightboxTitle').textContent = item.title;
+            
+            const mediaBox = document.getElementById('lightboxMediaBox');
+            mediaBox.innerHTML = '';
+
+            const isVideo = isVideoFile(item.src);
+
+            if (isVideo) {
+                const video = document.createElement('video');
+                video.src = item.src;
+                video.controls = true;
+                video.autoplay = true;
+                video.onclick = toggleSuperFullscreen;
+                mediaBox.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.title;
+                img.onclick = toggleSuperFullscreen;
+                mediaBox.appendChild(img);
+            }
+            
+            const downloadBtn = document.getElementById('downloadLink');
+            downloadBtn.onclick = function(e) {
+                e.preventDefault();
+                downloadMedia(item.src, item.title, isVideo);
+            };
+        }
+
+        async function downloadMedia(url, filename, isVideo) {
+            try {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = blobUrl;
+                const ext = isVideo ? '.mp4' : '.jpg';
+                a.download = filename.toLowerCase().replace(/[^a-z0-9]/g, '_') + ext;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(blobUrl);
+                document.body.removeChild(a);
+            } catch (err) {
+                window.open(url, '_blank');
+            }
+        }
+
+        document.getElementById('lightboxModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightboxModal').classList.contains('active')) return;
+            
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            } else if (e.key === 'Escape') {
+                if (document.body.classList.contains('super-fullscreen-mode')) {
+                    document.body.classList.remove('super-fullscreen-mode');
+                } else {
+                    closeLightbox();
+                }
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const modalBox = document.getElementById('lightboxModal');
+
+        modalBox.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        modalBox.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1);
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1);
+            }
+        }
+
+        // Initialize gallery on page load
+        window.onload = renderGallery;
+    </script>
+
+</body>
+</html>

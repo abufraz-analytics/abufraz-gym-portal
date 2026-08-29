@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal - Abu Fraz Abbas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0b0f;
+            --card-bg: #14141c;
+            --accent-color: #f39c12;
+            --accent-glow: rgba(243, 156, 18, 0.3);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a5;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Top Navigation Bar with Sticky/Floating effect */
+        .top-nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 30px 20px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: transparent;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            color: var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            transform: translateX(-4px);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 40px 20px 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        h1 span {
+            color: var(--accent-color);
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            max-width: 1300px;
+            margin: 20px auto 100px;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+            border-color: rgba(243, 156, 18, 0.3);
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-card:hover .image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to top, #07070a, var(--card-bg));
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 20px;
+            text-align: center;
+            color: rgba(160, 160, 165, 0.6);
+            font-size: 0.85rem;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.1rem; }
+            .image-wrapper { height: 320px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="index.html" class="back-btn">
+            &larr; Back to Main Gallery
+        </a>
+    </div>
+
+    <header>
+        <h1>Healthy <span>Meal</span></h1>
+        <p class="section-desc">
+            Capturing the ultimate pump, vascularity, and physical peak achieved through relentless daily consistency.
+        </p>
+    </header>
+
+    <section class="gallery-section">
+        <div class="gallery-grid">
+            
+            <a href="peak1.html" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                <div class="gallery-card" style="height: 100%;">
+                    <div class="image-wrapper">
+                        <img src="https://res.cloudinary.com/gz546ufv/image/upload/v1787916872/20_cujthy.webp" alt="Morning Fuel">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Morning Fuel</h3>
+                        <p class="card-desc">Starting the engine right—clean fuel, high focus, and the ultimate kickstart for the day ahead.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="peak2.html" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                <div class="gallery-card" style="height: 100%;">
+                    <div class="image-wrapper">
+                        <img src="https://res.cloudinary.com/gz546ufv/image/upload/v1787916871/21_wgoalz.jpg" alt="Midday Power">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Midday Power</h3>
+                        <p class="card-desc">The visual payoff of clean nutrition and hard work.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="peak3.html" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                <div class="gallery-card" style="height: 100%;">
+                    <div class="image-wrapper">
+                        <img src="https://res.cloudinary.com/gz546ufv/image/upload/v1787916871/22_labprh.webp" alt="Evening Recovery">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Evening Recovery</h3>
+                        <p class="card-desc">Closing out the day with the right nutrition to repair, rebuild, and get ready for tomorrow.</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Abu Fraz Abbas. All Rights Reserved. Post-Workout Peak Archive.
+    </footer>
+
+</body>
+</html>
