@@ -124,6 +124,7 @@
             height: 380px;
             overflow: hidden;
             position: relative;
+            background: #000;
         }
 
         .image-wrapper img,
@@ -132,6 +133,7 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
+            pointer-events: none;
         }
 
         .gallery-card:hover .image-wrapper img,
@@ -144,18 +146,18 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid var(--accent-color);
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(243, 156, 18, 0.4);
             color: var(--accent-color);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 5px;
-            z-index: 2;
+            justify-content: center;
+            font-size: 0.9rem;
             backdrop-filter: blur(4px);
+            z-index: 2;
         }
 
         .card-content {
@@ -442,25 +444,21 @@
                 card.onclick = () => openLightbox(index);
 
                 let mediaHTML = '';
+                let badgeHTML = '';
+
                 if (item.type === 'video') {
-                    mediaHTML = `
-                        <div class="image-wrapper">
-                            <video src="${item.src}" muted preload="metadata"></video>
-                            <div class="video-badge">
-                                <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> VIDEO
-                            </div>
-                        </div>
-                    `;
+                    const posterUrl = item.src.replace(/\.[^/.]+$/, "") + ".jpg";
+                    mediaHTML = `<video src="${item.src}" poster="${posterUrl}" muted preload="metadata"></video>`;
+                    badgeHTML = `<div class="video-badge">&#9658;</div>`;
                 } else {
-                    mediaHTML = `
-                        <div class="image-wrapper">
-                            <img src="${item.src}" alt="${item.title}" loading="lazy">
-                        </div>
-                    `;
+                    mediaHTML = `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
                 }
 
                 card.innerHTML = `
-                    ${mediaHTML}
+                    <div class="image-wrapper">
+                        ${mediaHTML}
+                        ${badgeHTML}
+                    </div>
                     <div class="card-content">
                         <h3 class="card-title">${item.title}</h3>
                         <p class="card-desc">${item.desc}</p>
