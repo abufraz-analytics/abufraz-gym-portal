@@ -491,7 +491,9 @@
                 let badgeHTML = '';
 
                 if (isVideo) {
-                    mediaHTML = `<video src="${item.src}" muted preload="metadata"></video>`;
+                    // Added poster attribute with .jpg fallback from Cloudinary video link for mobile preview support
+                    const posterUrl = item.src.replace(/\.[^/.]+$/, "") + ".jpg";
+                    mediaHTML = `<video src="${item.src}" poster="${posterUrl}" muted preload="metadata"></video>`;
                     badgeHTML = `<div class="video-badge">&#9658;</div>`;
                 } else {
                     mediaHTML = `<img src="${item.src}" alt="${item.title}">`;
